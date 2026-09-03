@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { technologies } from "@/lib/content";
+import { getCmsContent } from "@/lib/cms";
 import { Icon, PageHero } from "@/components/site";
 
 export const metadata = { title: "Technologies" };
 
-export default function TechnologiesPage() {
+export default async function TechnologiesPage() {
+  const { technologies } = await getCmsContent();
   const categories = [...new Set(technologies.map((technology) => technology.category))];
   return (
     <>

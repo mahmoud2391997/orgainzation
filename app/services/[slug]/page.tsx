@@ -1,23 +1,25 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { notFound } from "next/navigation";
-import { services } from "@/lib/content";
+import { getCmsContent } from "@/lib/cms";
 import { Icon } from "@/components/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+  return getCmsContent().then(({ services }) => services.map((service) => ({ slug: service.slug })));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
+  const { services } = await getCmsContent();
   const service = services.find((item) => item.slug === slug);
   return { title: service?.name ?? "Service" };
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
+  const { services } = await getCmsContent();
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
 

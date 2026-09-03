@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { services } from "@/lib/content";
+import { getCmsContent } from "@/lib/cms";
 import { Icon, PageHero } from "@/components/site";
 
 export const metadata = { title: "Services" };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const { services } = await getCmsContent();
   return (
     <>
       <PageHero eyebrow="Capabilities" title="A partner for the parts that matter." description="From the first useful question to the last mile of adoption, we bring the people and practices required to make change stick." />

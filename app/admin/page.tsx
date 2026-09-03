@@ -10,6 +10,6 @@ export default async function AdminPage() {
   const session = cookieStore.get("antitude-admin")?.value;
   const expected = process.env.ADMIN_PASSWORD ?? "antitude-demo";
   if (!session || session !== expected) redirect("/admin/login");
-  const initialLeads = await readLeads();
+  const initialLeads = await readLeads().catch(() => []);
   return <AdminDashboard initialLeads={initialLeads} />;
 }

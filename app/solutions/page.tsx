@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { solutions } from "@/lib/content";
+import { getCmsContent } from "@/lib/cms";
 import { PageHero } from "@/components/site";
 
 export const metadata = { title: "Solutions" };
 
-export default function SolutionsPage() {
+export default async function SolutionsPage() {
+  const { solutions } = await getCmsContent();
   return (
     <>
       <PageHero eyebrow="Industry perspective" title="Context changes the answer." description="We pair technology fluency with a working understanding of the environments where the stakes are highest." />

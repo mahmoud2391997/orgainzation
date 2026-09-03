@@ -77,11 +77,13 @@ function ThemeToggle() {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  if (pathname.startsWith("/admin")) return null;
   const links = [
     ["Services", "/services"],
     ["Technologies", "/technologies"],
     ["Solutions", "/solutions"],
-    ["Projects", "/projects"],
+    ["About us", "/about"],
+    ["Contact us", "/contact"],
   ];
 
   return (
@@ -94,7 +96,6 @@ export function Header() {
           ))}
         </nav>
         <div className="nav-actions">
-          <span className="scope">SCOPE: 41/41</span>
           <Link href="/admin/login" className="button secondary" style={{ minHeight: 40, padding: "0 12px" }}>Admin</Link>
           <ThemeToggle />
           <Link href="/appointment" className="button primary">Book consultation <ArrowRight size={14} /></Link>
@@ -116,6 +117,8 @@ export function Header() {
 }
 
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
@@ -133,7 +136,8 @@ export function Footer() {
             <Link href="/services">Services</Link>
             <Link href="/technologies">Technologies</Link>
             <Link href="/solutions">Solutions</Link>
-            <Link href="/projects">Projects</Link>
+            <Link href="/about">About us</Link>
+            <Link href="/contact">Contact us</Link>
           </div>
         </div>
         <div>

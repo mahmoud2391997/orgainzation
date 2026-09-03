@@ -37,20 +37,6 @@ export type Solution = {
   image: string;
 };
 
-export type Project = {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  fullDescription: string;
-  technologies: string[];
-  services: string[];
-  image: string;
-  industry: string;
-  projectUrl: string;
-  results: string[];
-};
-
 export const services: Service[] = [
   {
     id: "s1",
@@ -118,6 +104,17 @@ export const services: Service[] = [
     technologies: ["Architecture", "Roadmaps", "Due diligence", "Advisory"],
     image: "/images/service-consulting.jpg",
   },
+  {
+    id: "s7",
+    name: "Product engineering",
+    slug: "product-engineering",
+    description: "Move from an important idea to a product people can depend on.",
+    detailedDescription:
+      "We take products from ambiguous first brief to production scale, combining product strategy, human-centered design, and disciplined engineering. Each increment makes the next decision clearer and the product more useful.",
+    icon: "globe",
+    technologies: ["Product strategy", "React", "TypeScript", "Design systems"],
+    image: "/images/service-software.jpg",
+  },
 ];
 
 export const technologies: Technology[] = [
@@ -134,55 +131,6 @@ export const solutions: Solution[] = [
   { id: "so2", title: "Financial services", description: "Build trusted digital experiences for a sector where every decision carries weight.", industry: "Financial services", image: "/images/solution-finance.jpg" },
   { id: "so3", title: "Retail & consumer", description: "Turn customer signals into useful, timely experiences across every channel.", industry: "Retail", image: "/images/solution-retail.jpg" },
   { id: "so4", title: "Energy & industrials", description: "Bring intelligence to complex assets, field teams, and critical infrastructure.", industry: "Energy", image: "/images/solution-energy.jpg" },
-];
-
-export const projects: Project[] = [
-  {
-    id: "p1",
-    title: "Northstar Clinical Intelligence",
-    slug: "northstar-clinical-intelligence",
-    description: "A clinical evidence platform that gives care teams signal before noise.",
-    fullDescription: "Northstar brought fragmented clinical evidence into one calm, searchable workspace. Antitude shaped the product strategy, built the retrieval layer, and created a secure workflow for review and feedback.",
-    technologies: ["Generative AI", "React", "Python"],
-    services: ["AI & machine learning", "Custom software development"],
-    image: "/images/project-clinical.jpg",
-    industry: "Healthcare",
-    projectUrl: "https://example.com",
-    results: ["42% faster evidence review", "3.1× more weekly active users", "Audit-ready feedback loops"],
-  },
-  {
-    id: "p2",
-    title: "Lumen Operations Cloud",
-    slug: "lumen-operations-cloud",
-    description: "Real-time visibility for a distributed energy network.",
-    fullDescription: "Lumen helps operations teams see the system as it moves. We unified field data, alerts, and work orders into a platform designed around decisive moments—not dashboards for their own sake.",
-    technologies: ["Cloud native", "Data platforms", "TypeScript"],
-    services: ["Cloud & platform engineering", "Digital transformation"],
-    image: "/images/project-lumen.jpg",
-    industry: "Energy",
-    projectUrl: "https://example.com",
-    results: ["18 min saved per incident", "99.95% platform availability", "One source of operational truth"],
-  },
-  {
-    id: "p3",
-    title: "Arcway Member Experience",
-    slug: "arcway-member-experience",
-    description: "A more personal digital front door for a national financial institution.",
-    fullDescription: "Arcway replaced disconnected member journeys with a fast, accessible experience that makes the next best action feel natural. A modular platform supports the next five years of growth.",
-    technologies: ["Web applications", "Intelligent automation", "React"],
-    services: ["Custom software development", "Quality engineering"],
-    image: "/images/project-arcway.jpg",
-    industry: "Financial services",
-    projectUrl: "https://example.com",
-    results: ["31% conversion lift", "2.4 s faster first interaction", "WCAG AA accessibility"],
-  },
-];
-
-export const stats = [
-  { value: "41", label: "engagements shipped" },
-  { value: "9.4/10", label: "partner satisfaction" },
-  { value: "18", label: "markets reached" },
-  { value: "0", label: "black-box handoffs" },
 ];
 
 export type LeadStatus = "new" | "contacted" | "qualified" | "lost";
@@ -206,4 +154,4 @@ export const seedLeads: Lead[] = [
   { id: "l3", firstName: "Eli", lastName: "Morgan", email: "eli.morgan@arcway.com", phone: "+1 212 555 0129", company: "Arcway", message: "We need an architecture review before the next investment round.", preferredDate: "2026-09-24", status: "qualified", submittedAt: "2026-09-05T11:08:00Z" },
 ];
 
-export const content = { services, technologies, solutions, projects, stats };
+export const content = { services, technologies, solutions };
