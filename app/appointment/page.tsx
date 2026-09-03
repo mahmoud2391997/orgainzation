@@ -1,0 +1,36 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+import { ArrowRight, Check, LoaderCircle } from "lucide-react";
+import { PageHero } from "@/components/site";
+
+export default function AppointmentPage() {
+  const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setState("loading");
+    setMessage("");
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    try {
+      const response = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? "Something went wrong.");
+      setState("success");
+      setMessage("Thanks—we have your note and will be in touch shortly.");
+      form.reset();
+    } catch (error) {
+      setState("error");
+      setMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    }
+  }
+
+  return (
+    <>
+      <PageHero eyebrow="Start a conversation" title="Bring us the hard question." description="Tell us what is changing, what is stuck, or what you are trying to make possible. We will come prepared to be useful." />
+      <section className="section"><div className="shell form-shell"><div><span className="eyebrow">The first 30 minutes</span><h2 className="h2">Less pitch. More signal.</h2><p className="lede">You do not need a perfect brief. A little context is enough for us to understand the shape of the decision and bring the right perspective.</p><div className="capability-list">{["We respond within one business day", "A senior practitioner joins the call", "No obligation, no generic deck"].map((item) => <div className="capability" style={{ color: "var(--muted)" }} key={item}><span className="check"><Check size={13} /></span>{item}</div>)}</div></div><form className="surface form-card" onSubmit={submit}><div className="form-grid"><div className="field"><label htmlFor="firstName">First name</label><input id="firstName" name="firstName" required /></div><div className="field"><label htmlFor="lastName">Last name</label><input id="lastName" name="lastName" required /></div><div className="field"><label htmlFor="email">Work email</label><input id="email" name="email" type="email" required /></div><div className="field"><label htmlFor="company">Company</label><input id="company" name="company" required /></div><div className="field"><label htmlFor="phone">Phone <span style={{ color: "var(--muted)", fontWeight: 400 }}>(optional)</span></label><input id="phone" name="phone" type="tel" /></div><div className="field"><label htmlFor="preferredDate">Preferred date</label><input id="preferredDate" name="preferredDate" type="date" /></div><div className="field full"><label htmlFor="message">What are you working through?</label><textarea id="message" name="message" required placeholder="A sentence, a paragraph, or the messy version is perfect." /></div></div><div className="form-actions"><span className="form-note">By submitting, you agree that we can use this information to respond to your request.</span><button className="button primary" type="submit" disabled={state === "loading"}>{state === "loading" ? <><LoaderCircle size={15} className="spin" /> Sending…</> : <>Send the note <ArrowRight size={14} /></>}</button></div>{message && <div className={`form-message ${state === "success" ? "success" : "error"}`} role="status">{message}</div>}</form></div></section>
+    </>
+  );
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "l1",
+    "firstName": "Mira",
+    "lastName": "Patel",
+    "email": "mira.patel@northshore.co",
+    "phone": "+1 415 555 0182",
+    "company": "Northshore",
+    "message": "We are exploring a grounded AI assistant for our service teams.",
+    "preferredDate": "2026-09-17",
+    "status": "qualified",
+    "submittedAt": "2026-09-10T09:12:00Z"
+  },
+  {
+    "id": "l2",
+    "firstName": "Jonas",
+    "lastName": "Berg",
+    "email": "jonas@lumenenergy.io",
+    "phone": "+46 70 555 4402",
+    "company": "Lumen Energy",
+    "message": "Looking for a platform partner for our operations modernization.",
+    "preferredDate": "2026-09-19",
+    "status": "contacted",
+    "submittedAt": "2026-09-08T15:36:00Z"
+  },
+  {
+    "id": "l3",
+    "firstName": "Eli",
+    "lastName": "Morgan",
+    "email": "eli.morgan@arcway.com",
+    "phone": "+1 212 555 0129",
+    "company": "Arcway",
+    "message": "We need an architecture review before the next investment round.",
+    "preferredDate": "2026-09-24",
+    "status": "qualified",
+    "submittedAt": "2026-09-05T11:08:00Z"
+  }
+]
