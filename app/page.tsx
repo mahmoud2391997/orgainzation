@@ -5,6 +5,8 @@ import { Icon, SectionHeader } from "@/components/site";
 import { ServicesCarousel } from "@/components/services-carousel";
 import { ConsultationForm } from "@/components/consultation-form";
 import { HeroVisual } from "@/components/hero-visual";
+import { Radar } from "@/components/radar";
+import { examples } from "@/lib/examples";
 
 export default async function HomePage() {
   const { services, solutions, technologies } = await getCmsContent();
@@ -36,6 +38,7 @@ export default async function HomePage() {
       <section className="section">
         <div className="shell">
           <SectionHeader eyebrow="Technology radar" title="The stack is a means, not the strategy." description="We choose practical technologies for durable products, grounded intelligence, secure integrations, and resilient operations." action={<Link className="button secondary" href="/technologies">Explore technologies <ArrowRight size={14} /></Link>} />
+          <Radar services={services} technologies={technologies} solutions={solutions} />
           <div className="technology-grid">
             {technologies.map((technology) => (
               <article className="surface technology-card" key={technology.id}>
@@ -44,6 +47,13 @@ export default async function HomePage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="shell">
+          <SectionHeader eyebrow="Examples" title="Proof, not promises." description="Explore the kinds of products, platforms, and intelligent systems we make useful." action={<Link className="button secondary" href="/examples">Explore examples <ArrowRight size={14} /></Link>} />
+          <div className="home-examples-grid">{examples.slice(0, 3).map((example) => <Link href="/examples" className="home-example-card" key={example.id}><img src={example.media} alt="" /><div><span className="kicker">{example.eyebrow}</span><h3>{example.title}</h3><p>{example.metric}</p><ArrowRight size={15} /></div></Link>)}</div>
         </div>
       </section>
 

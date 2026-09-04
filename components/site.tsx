@@ -22,6 +22,7 @@ import {
   X,
 } from "lucide-react";
 import type { IconName } from "@/lib/content";
+import { useLanguage } from "@/components/language-provider";
 
 export function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   const props = { size, strokeWidth: 1.8 };
@@ -51,6 +52,11 @@ export function Brand({ light = false }: { light?: boolean }) {
   );
 }
 
+function LanguageToggle() {
+  const { locale, setLocale } = useLanguage();
+  return <button className="button ghost language-toggle" type="button" onClick={() => setLocale(locale === "en" ? "ar" : "en")} aria-label={locale === "en" ? "Switch to Arabic" : "Switch to English"}>{locale === "en" ? "عربي" : "EN"}</button>;
+}
+
 function ThemeToggle() {
   const [dark, setDark] = useState(false);
 
@@ -75,6 +81,7 @@ function ThemeToggle() {
 }
 
 export function Header() {
+  const { t } = useLanguage();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -100,13 +107,14 @@ export function Header() {
         <Brand />
         <nav className="main-nav" aria-label="Primary navigation">
           {links.map(([label, href]) => (
-            <Link key={href} href={href} className={`nav-link ${pathname.startsWith(href) ? "active" : ""}`}>{label}</Link>
+            <Link key={href} href={href} className={`nav-link ${pathname.startsWith(href) ? "active" : ""}`}>{t(label)}</Link>
           ))}
         </nav>
         <div className="nav-actions">
           <Link href="/admin/login" className="button secondary" style={{ minHeight: 40, padding: "0 12px" }}>Admin</Link>
+          <LanguageToggle />
           <ThemeToggle />
-          <Link href="/appointment" className="button primary">Book consultation <ArrowRight size={14} /></Link>
+          <Link href="/appointment" className="button primary">{t("Book consultation")} <ArrowRight size={14} /></Link>
           <button className="mobile-nav-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -115,9 +123,9 @@ export function Header() {
       {open && (
         <div className="mobile-nav shell">
           {links.map(([label, href]) => (
-            <Link key={href} href={href} className={`nav-link ${pathname.startsWith(href) ? "active" : ""}`} onClick={() => setOpen(false)}>{label}</Link>
+            <Link key={href} href={href} className={`nav-link ${pathname.startsWith(href) ? "active" : ""}`} onClick={() => setOpen(false)}>{t(label)}</Link>
           ))}
-          <Link href="/appointment" className="button primary" onClick={() => setOpen(false)}>Book consultation <ArrowRight size={14} /></Link>
+          <Link href="/appointment" className="button primary" onClick={() => setOpen(false)}>{t("Book consultation")} <ArrowRight size={14} /></Link>
         </div>
       )}
     </header>

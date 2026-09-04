@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowRight, Check, Clock3, Search, X } from "lucide-react";
 import { examples, type ExampleCategory } from "@/lib/examples";
+import { useLanguage } from "@/components/language-provider";
 
 const categories: Array<"All" | ExampleCategory> = ["All", "Services", "Solutions", "Technologies"];
 
 export function ExamplesBrowser() {
+  const { t } = useLanguage();
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
@@ -19,8 +21,8 @@ export function ExamplesBrowser() {
 
   return <>
     <div className="examples-toolbar">
-      <div className="example-tabs" role="tablist" aria-label="Filter examples">{categories.map((item) => <button key={item} type="button" role="tab" aria-selected={category === item} className={`example-tab ${category === item ? "active" : ""}`} onClick={() => setCategory(item)}>{item}<span>{item === "All" ? examples.length : examples.filter((example) => example.category === item).length}</span></button>)}</div>
-      <label className="example-search"><Search size={16} /><span className="sr-only">Search examples</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by capability or stack" />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X size={14} /></button>}</label>
+      <div className="example-tabs" role="tablist" aria-label={t("Examples")}>{categories.map((item) => <button key={item} type="button" role="tab" aria-selected={category === item} className={`example-tab ${category === item ? "active" : ""}`} onClick={() => setCategory(item)}>{t(item)}<span>{item === "All" ? examples.length : examples.filter((example) => example.category === item).length}</span></button>)}</div>
+      <label className="example-search"><Search size={16} /><span className="sr-only">Search examples</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("Search by capability or stack")} />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X size={14} /></button>}</label>
     </div>
     <div className="examples-grid">{filtered.map((example) => <article className="example-card" key={example.id}>
       <button type="button" className="example-media" onClick={() => setSelected(example.id)} aria-label={`Preview ${example.title}`}><img src={example.media} alt="" /><span className="example-media-label">Preview case <ArrowRight size={14} /></span></button>

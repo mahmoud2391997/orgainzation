@@ -16,14 +16,22 @@
   --ease: cubic-bezier(.23, 1, .32, 1);
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'DM Sans', Arial, sans-serif; }
-a { color: inherit; text-decoration: none; }
-button, input, textarea, select { font: inherit; }
-button, a { -webkit-tap-highlight-color: transparent; }
-button { cursor: pointer; }
-::selection { background: rgba(45, 212, 232, .35); }
+[dir="rtl"] { font-family: Arial, "Noto Sans Arabic", sans-serif; }
+[dir="rtl"] .button svg, [dir="rtl"] .card-link svg, [dir="rtl"] .home-example-card svg { transform: scaleX(-1); }
+[dir="rtl"] .main-nav, [dir="rtl"] .nav-actions, [dir="rtl"] .hero-actions { direction: rtl; }
+[dir="rtl"] .example-search input { text-align: right; }
+.language-toggle { min-height: 40px; padding: 0 10px; font-weight: 700; }
+.radar-system { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); gap: 24px; position: relative; margin-top: 28px; }
+.radar-stage { min-height: 560px; position: relative; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(circle at center, rgba(31, 194, 203, .12), transparent 34%), var(--paper); }
+.radar-ring { position: absolute; border: 1px solid var(--line); border-radius: 999px; inset: 12%; } .ring-b { inset: 25%; } .ring-c { inset: 38%; }
+.radar-axis { position: absolute; background: var(--line); opacity: .7; } .axis-x { top: 50%; left: 8%; right: 8%; height: 1px; } .axis-y { left: 50%; top: 8%; bottom: 8%; width: 1px; }
+.radar-core { position: absolute; inset: 42%; display: grid; place-content: center; text-align: center; border-radius: 999px; background: var(--ink); color: var(--paper); z-index: 1; } .radar-core span { font: 10px var(--mono); letter-spacing: .12em; opacity: .65; } .radar-core strong { font-size: 14px; line-height: 1.15; }
+.radar-point { position: absolute; width: 28px; height: 28px; border: 0; background: transparent; transform: translate(-50%, -50%); cursor: pointer; z-index: 2; } .radar-point span { display: block; width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 5px rgba(31,194,203,.14); transition: transform .2s ease; } .radar-point:hover span, .radar-point:focus-visible span, .radar-point.is-active span { transform: scale(1.65); background: var(--blue); }
+.radar-point-0 { left: 23%; top: 27%; } .radar-point-1 { left: 38%; top: 18%; } .radar-point-2 { left: 60%; top: 22%; } .radar-point-3 { left: 77%; top: 31%; } .radar-point-4 { left: 83%; top: 52%; } .radar-point-5 { left: 72%; top: 74%; } .radar-point-6 { left: 54%; top: 83%; } .radar-point-7 { left: 31%; top: 77%; } .radar-point-8 { left: 17%; top: 62%; } .radar-point-9 { left: 26%; top: 47%; } .radar-point-10 { left: 49%; top: 34%; } .radar-point-11 { left: 63%; top: 63%; }
+.radar-list { display: flex; flex-direction: column; gap: 6px; max-height: 560px; overflow: auto; } .radar-list-item { display: flex; align-items: center; gap: 10px; text-align: start; border: 1px solid var(--line); background: var(--paper); color: inherit; padding: 10px 12px; cursor: pointer; } .radar-list-item:hover, .radar-list-item.is-active { border-color: var(--cyan); } .radar-list-item span:nth-child(2) { display: grid; gap: 2px; flex: 1; } .radar-list-item small { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; } .radar-list-item strong { font-size: 13px; } .radar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); } .radar-dot.technologies { background: var(--blue); } .radar-dot.solutions { background: var(--ink); }
+.radar-detail { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 5px; } .radar-detail strong { font-size: 24px; } .radar-detail p { margin: 0; color: var(--muted); }
+.home-examples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; } .home-example-card { border: 1px solid var(--line); background: var(--paper); color: inherit; overflow: hidden; } .home-example-card img { width: 100%; aspect-ratio: 1.5; object-fit: cover; } .home-example-card > div { display: grid; gap: 8px; padding: 18px; } .home-example-card h3 { margin: 0; font-size: 20px; } .home-example-card p { margin: 0; color: var(--muted); } .home-example-card svg { margin-top: 8px; color: var(--cyan-deep); }
+@media (max-width: 860px) { .radar-system { grid-template-columns: 1fr; } .radar-stage { min-height: 420px; } .home-examples-grid { grid-template-columns: 1fr; } .radar-list { max-height: 360px; } }
 
 .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .section { padding: 108px 0; }
