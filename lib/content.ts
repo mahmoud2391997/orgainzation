@@ -18,6 +18,7 @@ export type Service = {
   icon: IconName;
   technologies: string[];
   image: string;
+  offerings?: string[];
   caseStudy?: string;
   caseMetric?: string;
 };
@@ -42,6 +43,71 @@ export type Solution = {
 };
 
 export const services: Service[] = [
+  {
+    id: "s8",
+    name: "Software & web development",
+    slug: "software-web-development",
+    description: "Modern, scalable web applications tailored to the way your business works.",
+    detailedDescription: "From customer-facing platforms and internal dashboards to complex business systems, we build reliable digital solutions from idea to deployment.",
+    icon: "code",
+    technologies: ["TypeScript", "React", "Node.js", "PostgreSQL"],
+    offerings: ["Custom web application development", "Frontend and full-stack development", "SaaS and MVP development", "Admin dashboards and CRM systems", "ERP-style and multi-tenant platforms", "Customer portals and e-commerce", "Appointment and booking systems", "Database and backend development"],
+    image: "/images/service-software.png",
+    caseStudy: "Multi-tenant operations platform",
+    caseMetric: "40–60% lower licensing overhead",
+  },
+  {
+    id: "s9",
+    name: "Mobile app development",
+    slug: "mobile-app-development",
+    description: "Practical mobile applications that connect customers, teams, and everyday operations.",
+    detailedDescription: "From business apps and customer portals to booking and management applications, we build mobile solutions around real user needs.",
+    icon: "globe",
+    technologies: ["React Native", "TypeScript", "API integration", "Push notifications"],
+    offerings: ["Cross-platform mobile applications", "Customer and client apps", "Business management apps", "Booking and appointment apps", "E-commerce mobile apps", "Employee and internal apps", "API and backend integration"],
+    image: "/images/service-software.png",
+    caseStudy: "Customer self-service mobile app",
+    caseMetric: "One experience across iOS and Android",
+  },
+  {
+    id: "s10",
+    name: "AI & intelligent automation",
+    slug: "ai-intelligent-automation",
+    description: "AI-powered applications and workflows that help teams work smarter and reduce repetition.",
+    detailedDescription: "We integrate modern AI models with existing systems, APIs, and workflows to create practical assistants and intelligent tools for real operations.",
+    icon: "spark",
+    technologies: ["OpenAI", "Python", "RAG", "Workflow automation"],
+    offerings: ["AI-powered applications", "Chatbots and conversational assistants", "AI agents and workflow automation", "AI API integration", "Knowledge assistants and semantic search", "Document and data processing", "Voice-enabled AI applications", "Business process automation"],
+    image: "/images/service-ai.png",
+    caseStudy: "Grounded AI assistant for service teams",
+    caseMetric: "75% of routine requests automated",
+  },
+  {
+    id: "s11",
+    name: "API & systems integration",
+    slug: "api-systems-integration",
+    description: "Connect the systems your business depends on and make work flow between them.",
+    detailedDescription: "We design dependable integrations across internal tools, third-party platforms, payments, messaging, and automation workflows.",
+    icon: "network",
+    technologies: ["REST APIs", "Webhooks", "OAuth", "Event-driven systems"],
+    offerings: ["API development", "Third-party API integration", "Systems integration", "Payment gateway integration", "Telegram, email, and messaging integrations", "Automation workflows"],
+    image: "/images/service-cloud.png",
+    caseStudy: "Connected operations workflow",
+    caseMetric: "One reliable flow across business systems",
+  },
+  {
+    id: "s12",
+    name: "Cloud, deployment & DevOps",
+    slug: "cloud-deployment-devops",
+    description: "Ship reliably with infrastructure, environments, and deployment practices built for momentum.",
+    detailedDescription: "We take applications from local development to stable production with secure hosting, repeatable deployments, and operational visibility.",
+    icon: "cloud",
+    technologies: ["Docker", "CI/CD", "VPS", "SSL and DNS"],
+    offerings: ["Application deployment", "VPS and cloud server setup", "Docker containerization", "CI/CD setup", "Domain and SSL configuration", "Hosting and environment management"],
+    image: "/images/service-cloud.png",
+    caseStudy: "Repeatable production deployment",
+    caseMetric: "Faster releases with fewer manual steps",
+  },
   {
     id: "s1",
     name: "AI & machine learning",
