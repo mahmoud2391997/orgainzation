@@ -191,6 +191,13 @@ export const services: Service[] = [
   },
 ];
 
+export const serviceOffers: Service[] = services.slice(0, 5).map((service) => ({
+  ...service,
+  name: service.id === "s8" ? "Software & product development" : service.id === "s9" ? "Mobile experiences" : service.id === "s10" ? "AI & intelligent automation" : service.id === "s11" ? "API & systems integration" : "Cloud, deployment & DevOps",
+  description: service.id === "s8" ? "Digital products and operational software shaped around the way your business works." : service.description,
+  offerings: service.id === "s8" ? ["Web and SaaS products", "Mobile applications", "Customer portals", "Operational dashboards", "Backend and database systems"] : service.offerings,
+}));
+
 export const technologies: Technology[] = [
   { id: "t1", name: "Generative AI", description: "Grounded copilots, retrieval systems, evaluation, and responsible model integration.", category: "Artificial intelligence", icon: "spark", image: "/images/technology-generative-ai.png" },
   { id: "t2", name: "Cloud native", description: "Composable cloud foundations engineered for velocity and resilience.", category: "Cloud & infrastructure", icon: "cloud", image: "/images/technology-cloud-native.png" },
@@ -228,7 +235,7 @@ export const seedLeads: Lead[] = [
   { id: "l3", firstName: "Eli", lastName: "Morgan", email: "eli.morgan@arcway.com", phone: "+1 212 555 0129", company: "Arcway", message: "We need an architecture review before the next investment round.", preferredDate: "2026-09-24", status: "qualified", submittedAt: "2026-09-05T11:08:00Z" },
 ];
 
-export const content = { services, technologies, solutions };
+export const content = { services: serviceOffers, technologies, solutions };
 
 export function enrichCmsContent<T extends Service | Technology | Solution>(items: T[]): T[] {
   return items.map((item) => item);
