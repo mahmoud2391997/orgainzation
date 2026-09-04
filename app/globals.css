@@ -14,6 +14,7 @@
   --shadow: 0 20px 55px rgba(17, 59, 89, 0.10);
   --radius: 18px;
   --ease: cubic-bezier(.23, 1, .32, 1);
+  --mono: 'Space Mono', monospace;
 }
 
 [dir="rtl"] { font-family: Arial, "Noto Sans Arabic", sans-serif; }
