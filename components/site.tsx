@@ -89,6 +89,7 @@ export function Header() {
     ["Services", "/services"],
     ["Technologies", "/technologies"],
     ["Solutions", "/solutions"],
+    ["Examples", "/examples"],
     ["About us", "/about"],
     ["Contact us", "/contact"],
   ];
@@ -143,6 +144,7 @@ export function Footer() {
             <Link href="/services">Services</Link>
             <Link href="/technologies">Technologies</Link>
             <Link href="/solutions">Solutions</Link>
+            <Link href="/examples">Examples</Link>
             <Link href="/about">About us</Link>
             <Link href="/contact">Contact us</Link>
           </div>
