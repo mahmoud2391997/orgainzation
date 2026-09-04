@@ -5,8 +5,10 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Service } from "@/lib/content";
 import { Icon } from "@/components/site";
+import { useLanguage } from "@/components/language-provider";
 
 export function ServicesCarousel({ services }: { services: Service[] }) {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
   const [slideStep, setSlideStep] = useState(0);
@@ -44,7 +46,7 @@ export function ServicesCarousel({ services }: { services: Service[] }) {
                 <div className="card-icon"><Icon name={service.icon} size={19} /></div>
                 <h3 className="h3">{service.name}</h3>
                 <p>{service.description}</p>
-                <div className="card-footer"><Link className="card-link" href={`/services/${service.slug}`}>See how we help <ArrowRight size={14} /></Link></div>
+                <div className="card-footer"><Link className="card-link" href={`/services/${service.slug}`}>{t("See how we help")} <ArrowRight size={14} /></Link></div>
               </div>
             </article>
           ))}

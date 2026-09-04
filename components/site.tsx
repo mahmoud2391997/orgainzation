@@ -178,6 +178,19 @@ export function Footer() {
   );
 }
 
+export function HeroContent() {
+  const { t } = useLanguage();
+  return (
+    <div className="hero-content">
+      <span className="eyebrow" style={{ color: "var(--cyan)" }}>{t("Technology partner · since 2014")}</span>
+      <h1 className="display reveal">{t("Make complex")} <span className="text-gradient">{t("useful.")}</span></h1>
+      <p className="lede reveal-2">{t("Antitude helps CTOs, enterprise leaders, and founders turn difficult technology into clear, measurable momentum. Strategy, engineering, and responsible AI—working as one.")}</p>
+      <div className="hero-meta reveal-2"><span className="hero-bullet">{t("Senior teams only")}</span><span className="hero-bullet">{t("Outcome-led")}</span><span className="hero-bullet">{t("No black boxes")}</span></div>
+      <div className="hero-actions reveal-3"><Link href="/appointment" className="button primary large">{t("Tell us what matters")} <ArrowRight size={16} /></Link><Link href="/about" className="button secondary large">{t("About Antitude")} <ArrowRight size={16} /></Link></div>
+    </div>
+  );
+}
+
 export function PageHero({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
   const { t } = useLanguage();
   return (
@@ -188,6 +201,17 @@ export function PageHero({ eyebrow, title, description }: { eyebrow: string; tit
         <p className="lede">{t(description)}</p>
       </div>
     </section>
+  );
+}
+
+export function ProofRail() {
+  const { t } = useLanguage();
+  return (
+    <div className="shell proof-rail" aria-label="Antitude proof points">
+      <div><strong>10+</strong><span>{t("years making hard work clearer")}</span></div>
+      <div><strong>3</strong><span>{t("disciplines, one senior team")}</span></div>
+      <div><strong>∞</strong><span>{t("curiosity for what comes next")}</span></div>
+    </div>
   );
 }
 
@@ -203,4 +227,9 @@ export function SectionHeader({ eyebrow, title, description, action }: { eyebrow
       {action}
     </div>
   );
+}
+
+export function LocaleText({ children }: { children: string }) {
+  const { t } = useLanguage();
+  return <>{t(children)}</>;
 }

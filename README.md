@@ -26,13 +26,16 @@ Set both `DATABASE_URL` and `ADMIN_PASSWORD` before deploying. Run `pnpm db:setu
 | `/services/[slug]` | Service detail pages |
 | `/technologies` | Technology radar |
 | `/solutions` | Industry solutions |
-| `/projects` | Filterable case-study index |
-| `/projects/[slug]` | Case-study detail pages |
+| `/examples` | Filterable case-study index |
+| `/about` | Company profile |
+| `/contact` | Contact page (alias of `/appointment`) |
 | `/appointment` | Consultation lead capture |
 | `/admin/login` | Portal sign-in |
-| `/admin` | Protected lead dashboard |
+| `/admin` | Protected lead dashboard + CMS |
 | `/api/health` | Health check |
 | `/api/leads` | Lead submission and protected management API |
+| `/api/content` | Protected CMS content read/update |
+| `/api/admin/login` | Portal sign-in / sign-out |
 
 ## Build
 
