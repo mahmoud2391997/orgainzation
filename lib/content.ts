@@ -235,7 +235,7 @@ export const seedLeads: Lead[] = [
   { id: "l3", firstName: "Eli", lastName: "Morgan", email: "eli.morgan@arcway.com", phone: "+1 212 555 0129", company: "Arcway", message: "We need an architecture review before the next investment round.", preferredDate: "2026-09-24", status: "qualified", submittedAt: "2026-09-05T11:08:00Z" },
 ];
 
-export const content = { services: serviceOffers, technologies, solutions };
+export const content = { services, technologies, solutions, serviceOffers };
 
 export function enrichCmsContent<T extends Service | Technology | Solution>(items: T[]): T[] {
   return items.map((item) => item);

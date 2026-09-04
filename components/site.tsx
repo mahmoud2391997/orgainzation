@@ -52,12 +52,33 @@ export function Brand({ light = false }: { light?: boolean }) {
   );
 }
 
-function LanguageToggle() {
+export function LanguageToggle() {
   const { locale, setLocale } = useLanguage();
-  return <button className="button ghost language-toggle" type="button" onClick={() => setLocale(locale === "en" ? "ar" : "en")} aria-label={locale === "en" ? "Switch to Arabic" : "Switch to English"}>{locale === "en" ? "AR" : "EN"}</button>;
+  return (
+    <div className="lang-pill" role="group" aria-label="Language selector">
+      <button
+        className={`lang-pill-option${locale === "en" ? " active" : ""}`}
+        type="button"
+        onClick={() => setLocale("en")}
+        aria-label="Switch to English"
+        aria-pressed={locale === "en"}
+      >
+        EN
+      </button>
+      <button
+        className={`lang-pill-option${locale === "ar" ? " active" : ""}`}
+        type="button"
+        onClick={() => setLocale("ar")}
+        aria-label="Switch to Arabic"
+        aria-pressed={locale === "ar"}
+      >
+        AR
+      </button>
+    </div>
+  );
 }
 
-function ThemeToggle() {
+export function ThemeToggle() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -111,7 +132,7 @@ export function Header() {
           ))}
         </nav>
         <div className="nav-actions">
-          <Link href="/admin/login" className="button secondary" style={{ minHeight: 40, padding: "0 12px" }}>Admin</Link>
+          <Link href="/admin/login" className="button secondary" style={{ minHeight: 40, padding: "0 12px" }}>{t("Admin")}</Link>
           <LanguageToggle />
           <ThemeToggle />
           <Link href="/appointment" className="button primary">{t("Book consultation")} <ArrowRight size={14} /></Link>
@@ -136,6 +157,14 @@ export function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return null;
+  const exploreLinks = [
+    ["Services", "/services"],
+    ["Technologies", "/technologies"],
+    ["Solutions", "/solutions"],
+    ["Examples", "/examples"],
+    ["About us", "/about"],
+    ["Contact us", "/contact"],
+  ];
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
@@ -150,21 +179,18 @@ export function Footer() {
         <div>
           <p className="footer-title">{t("Explore")}</p>
           <div className="footer-links">
-            <Link href="/services">Services</Link>
-            <Link href="/technologies">Technologies</Link>
-            <Link href="/solutions">Solutions</Link>
-            <Link href="/examples">Examples</Link>
-            <Link href="/about">About us</Link>
-            <Link href="/contact">Contact us</Link>
+            {exploreLinks.map(([label, href]) => (
+              <Link key={href} href={href}>{t(label)}</Link>
+            ))}
           </div>
         </div>
         <div>
           <p className="footer-title">{t("Company")}</p>
           <div className="footer-links">
-            <Link href="/appointment">Talk to an expert</Link>
-            <Link href="/admin/login">Client portal</Link>
+            <Link href="/appointment">{t("Talk to an expert")}</Link>
+            <Link href="/admin/login">{t("Client portal")}</Link>
             <a href="mailto:hello@antitude.ai">hello@antitude.ai</a>
-            <span>New York · London · Remote</span>
+            <span>{t("New York · London · Remote")}</span>
           </div>
         </div>
         <div>
@@ -173,7 +199,10 @@ export function Footer() {
           <Link href="/appointment" className="button primary" style={{ marginTop: 17 }}>{t("Start a conversation")} <ArrowRight size={14} /></Link>
         </div>
       </div>
-      <div className="shell footer-bottom"><span>© 2026 Antitude Systems</span><span>Human judgment · Useful technology</span></div>
+      <div className="shell footer-bottom">
+        <span>© 2026 Antitude Systems</span>
+        <span>{t("Human judgment · Useful technology")}</span>
+      </div>
     </footer>
   );
 }
@@ -185,8 +214,15 @@ export function HeroContent() {
       <span className="eyebrow" style={{ color: "var(--cyan)" }}>{t("Technology partner · since 2014")}</span>
       <h1 className="display reveal">{t("Make complex")} <span className="text-gradient">{t("useful.")}</span></h1>
       <p className="lede reveal-2">{t("Antitude helps CTOs, enterprise leaders, and founders turn difficult technology into clear, measurable momentum. Strategy, engineering, and responsible AI—working as one.")}</p>
-      <div className="hero-meta reveal-2"><span className="hero-bullet">{t("Senior teams only")}</span><span className="hero-bullet">{t("Outcome-led")}</span><span className="hero-bullet">{t("No black boxes")}</span></div>
-      <div className="hero-actions reveal-3"><Link href="/appointment" className="button primary large">{t("Tell us what matters")} <ArrowRight size={16} /></Link><Link href="/about" className="button secondary large">{t("About Antitude")} <ArrowRight size={16} /></Link></div>
+      <div className="hero-meta reveal-2">
+        <span className="hero-bullet">{t("Senior teams only")}</span>
+        <span className="hero-bullet">{t("Outcome-led")}</span>
+        <span className="hero-bullet">{t("No black boxes")}</span>
+      </div>
+      <div className="hero-actions reveal-3">
+        <Link href="/appointment" className="button primary large">{t("Tell us what matters")} <ArrowRight size={16} /></Link>
+        <Link href="/about" className="button secondary large">{t("About Antitude")} <ArrowRight size={16} /></Link>
+      </div>
     </div>
   );
 }
@@ -215,14 +251,14 @@ export function ProofRail() {
   );
 }
 
-export function SectionHeader({ eyebrow, title, description, action }: { eyebrow: string; title: string; description?: string; action?: ReactNode }) {
+export function SectionHeader({ eyebrow, title, description, action }: { eyebrow: string | ReactNode; title: string | ReactNode; description?: string | ReactNode; action?: ReactNode }) {
   const { t } = useLanguage();
   return (
     <div className="section-head">
       <div>
-        <span className="eyebrow">{t(eyebrow)}</span>
-        <h2 className="h2">{t(title)}</h2>
-        {description && <p className="lede">{t(description)}</p>}
+        <span className="eyebrow">{typeof eyebrow === "string" ? t(eyebrow) : eyebrow}</span>
+        <h2 className="h2">{typeof title === "string" ? t(title) : title}</h2>
+        {description && <p className="lede">{typeof description === "string" ? t(description) : description}</p>}
       </div>
       {action}
     </div>

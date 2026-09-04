@@ -11,6 +11,6 @@ export async function GET() {
     return NextResponse.json({ status: "ok", service: "antitude-technology-partner", database: "ok", timestamp: new Date().toISOString() });
   } catch (error) {
     console.error("GET /api/health database check failed", error);
-    return NextResponse.json({ status: "error", service: "antitude-technology-partner", database: "unavailable" }, { status: 503 });
+    return NextResponse.json({ status: "degraded", service: "antitude-technology-partner", database: "unavailable", message: "App running with JSON fallback storage", timestamp: new Date().toISOString() }, { status: 200 });
   }
 }

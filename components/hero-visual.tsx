@@ -1,13 +1,28 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, MoveUpRight, Radio } from "lucide-react";
+import { ArrowDown, ArrowRight, MoveUpRight, Radio, Database } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 
 const scenes = [
-  { image: "/images/technology-generative-ai.jpg", label: "Responsible AI", detail: "Turn intelligence into decisions.", example: "Grounded copilots and evaluation" },
-  { image: "/images/technology-cloud-native.jpg", label: "Cloud foundations", detail: "Build systems that keep moving.", example: "Resilient platforms and automation" },
-  { image: "/images/technology-data-platforms.jpg", label: "Data platforms", detail: "Make signal easier to find.", example: "Pipelines and semantic layers" },
+  {
+    image: "/images/technology-generative-ai.jpg",
+    label: "Responsible AI",
+    detail: "Turn intelligence into decisions.",
+    example: "Grounded copilots and evaluation",
+  },
+  {
+    image: "/images/technology-cloud-native.jpg",
+    label: "Cloud foundations",
+    detail: "Build systems that keep moving.",
+    example: "Resilient platforms and automation",
+  },
+  {
+    image: "/images/technology-data-platforms.jpg",
+    label: "Data platforms",
+    detail: "Make signal easier to find.",
+    example: "Pipelines and semantic layers",
+  },
 ];
 
 export function HeroVisual() {
@@ -41,17 +56,67 @@ export function HeroVisual() {
 
   return (
     <div className="hero-visual" ref={ref} aria-label="Interactive Antitude technology imagery">
-      <img className="hero-scene-image" src={scene.image} alt={scene.label} key={scene.image} />
+      <img className="hero-scene-image" src={scene.image} alt={t(scene.label)} key={scene.image} />
       <div className="hero-scene-overlay" />
       <div className="visual-orbit orbit-one" />
       <div className="visual-orbit orbit-two" />
-      <div className="visual-core"><span /><strong>Useful<br />momentum</strong></div>
-      <button className="visual-node node-one" type="button" onClick={() => setActive(0)} aria-label={`Show ${t("AI systems")} image`}><Radio size={14} /> {t("AI systems")}</button>
-      <button className="visual-node node-two" type="button" onClick={() => setActive(1)} aria-label={`Show ${t("Cloud foundations")} image`}>{t("Cloud foundations")} <MoveUpRight size={14} /></button>
-      <button className="visual-node node-three" type="button" onClick={() => setActive(2)} aria-label={`Show ${t("Data platforms")} image`}>{t("Data platforms")}</button>
-      <div className="visual-story"><span>{t(scene.label)}</span><strong>{t(scene.detail)}</strong><small>{t(scene.example)}</small><a href="#services">{t("Explore")} <ArrowRight size={13} /></a></div>
-      <div className="visual-caption"><span>Live radar</span><span>0{active + 1} / 03</span></div>
-      <a className="visual-scroll" href="#services"><ArrowDown size={14} /> See the system</a>
+
+      {/* Top caption badge */}
+      <div className="visual-caption">
+        <span>{t("Live radar")}</span>
+        <span>0{active + 1} / 03</span>
+      </div>
+
+      {/* Center core */}
+      <div className="visual-core">
+        <span />
+        <strong>{t("Useful")}<br />{t("momentum")}</strong>
+      </div>
+
+      {/* Interactive radar node 1 — AI systems */}
+      <button
+        className={`visual-node node-one ${active === 0 ? "is-active" : ""}`}
+        type="button"
+        onClick={() => setActive(0)}
+        aria-label={t("AI systems")}
+      >
+        <Radio size={13} /> {t("AI systems")}
+      </button>
+
+      {/* Interactive radar node 2 — Cloud foundations */}
+      <button
+        className={`visual-node node-two ${active === 1 ? "is-active" : ""}`}
+        type="button"
+        onClick={() => setActive(1)}
+        aria-label={t("Cloud foundations")}
+      >
+        {t("Cloud foundations")} <MoveUpRight size={13} />
+      </button>
+
+      {/* Interactive radar node 3 — Data platforms */}
+      <button
+        className={`visual-node node-three ${active === 2 ? "is-active" : ""}`}
+        type="button"
+        onClick={() => setActive(2)}
+        aria-label={t("Data platforms")}
+      >
+        <Database size={13} /> {t("Data platforms")}
+      </button>
+
+      {/* Floating details glass card: positioned to never overwrite radar nodes or core */}
+      <div className="visual-story">
+        <span className="visual-story-badge">{t(scene.label)}</span>
+        <strong>{t(scene.detail)}</strong>
+        <small>{t(scene.example)}</small>
+        <a href="#services">
+          {t("Explore")} <ArrowRight size={13} />
+        </a>
+      </div>
+
+      {/* Bottom corner scroll anchor */}
+      <a className="visual-scroll" href="#services">
+        <ArrowDown size={14} /> {t("See the system")}
+      </a>
     </div>
   );
 }
