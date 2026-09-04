@@ -29,6 +29,7 @@ export default async function HomePage() {
         <div className="shell">
           <SectionHeader eyebrow="Core services" title="A sharp team for the messy middle." description="From custom platforms and AI systems to cloud foundations, quality, and product delivery, we make difficult work executable." action={<Link className="button secondary" href="/services">Explore capabilities <ArrowRight size={14} /></Link>} />
           <ServicesCarousel services={services} />
+          <div className="case-strip" aria-label="Featured service cases">{services.slice(0, 3).map((service) => <Link className="case-chip" href={`/services/${service.slug}`} key={service.id}><span>Case in point</span><strong>{service.caseStudy ?? service.name}</strong><small>{service.caseMetric ?? service.description}</small><ArrowRight size={14} /></Link>)}</div>
         </div>
       </section>
 
