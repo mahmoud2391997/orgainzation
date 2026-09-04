@@ -22,13 +22,13 @@ export function ExamplesBrowser() {
   return <>
     <div className="examples-toolbar">
       <div className="example-tabs" role="tablist" aria-label={t("Examples")}>{categories.map((item) => <button key={item} type="button" role="tab" aria-selected={category === item} className={`example-tab ${category === item ? "active" : ""}`} onClick={() => setCategory(item)}>{t(item)}<span>{item === "All" ? examples.length : examples.filter((example) => example.category === item).length}</span></button>)}</div>
-      <label className="example-search"><Search size={16} /><span className="sr-only">Search examples</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("Search by capability or stack")} />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X size={14} /></button>}</label>
+      <label className="example-search"><Search size={16} /><span className="sr-only">{t("Search examples")}</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("Search by capability or stack")} />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X size={14} /></button>}</label>
     </div>
     <div className="examples-grid">{filtered.map((example) => <article className="example-card" key={example.id}>
-      <button type="button" className="example-media" onClick={() => setSelected(example.id)} aria-label={`Preview ${example.title}`}><img src={example.media} alt="" /><span className="example-media-label">Preview case <ArrowRight size={14} /></span></button>
-      <div className="example-body"><div className="example-meta"><span>{example.category}</span><span><Clock3 size={12} /> {example.timeline}</span></div><p className="kicker">{example.eyebrow}</p><h2>{example.title}</h2><p>{example.description}</p><div className="example-stack">{example.stack.map((item) => <span key={item}>{item}</span>)}</div><button type="button" className="example-link" onClick={() => setSelected(example.id)}>View capabilities <ArrowRight size={14} /></button></div>
+      <button type="button" className="example-media" onClick={() => setSelected(example.id)} aria-label={`Preview ${example.title}`}><img src={example.media} alt="" /><span className="example-media-label">{t("Preview case")} <ArrowRight size={14} /></span></button>
+      <div className="example-body"><div className="example-meta"><span>{example.category}</span><span><Clock3 size={12} /> {example.timeline}</span></div><p className="kicker">{example.eyebrow}</p><h2>{example.title}</h2><p>{example.description}</p><div className="example-stack">{example.stack.map((item) => <span key={item}>{item}</span>)}</div><button type="button" className="example-link" onClick={() => setSelected(example.id)}>{t("View capabilities")} <ArrowRight size={14} /></button></div>
     </article>)}</div>
-    {filtered.length === 0 && <div className="examples-empty"><h2>No matching examples</h2><p>Try a different capability, industry, or technology.</p></div>}
+    {filtered.length === 0 && <div className="examples-empty"><h2>{t("No matching examples")}</h2><p>{t("Try a different capability, industry, or technology.")}</p></div>}
     {selected && <ExamplePanel example={examples.find((example) => example.id === selected)!} onClose={() => setSelected(null)} />}
   </>;
 }

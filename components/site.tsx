@@ -133,6 +133,7 @@ export function Header() {
 }
 
 export function Footer() {
+  const { t } = useLanguage();
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return null;
   return (
@@ -140,14 +141,14 @@ export function Footer() {
       <div className="shell footer-grid">
         <div>
           <Brand light />
-          <p className="footer-copy">The technology partner for ambitious teams building what matters next.</p>
+          <p className="footer-copy">{t("The technology partner for ambitious teams building what matters next.")}</p>
           <div className="nav-actions" style={{ marginTop: 23 }}>
             <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="button ghost" style={{ border: "1px solid rgba(255,255,255,.12)", color: "#aabac8", padding: "0 12px" }} aria-label="LinkedIn"><Linkedin size={16} /></a>
             <a href="mailto:hello@antitude.ai" className="button ghost" style={{ border: "1px solid rgba(255,255,255,.12)", color: "#aabac8", padding: "0 12px" }} aria-label="Email Antitude"><Send size={16} /></a>
           </div>
         </div>
         <div>
-          <p className="footer-title">Explore</p>
+          <p className="footer-title">{t("Explore")}</p>
           <div className="footer-links">
             <Link href="/services">Services</Link>
             <Link href="/technologies">Technologies</Link>
@@ -158,7 +159,7 @@ export function Footer() {
           </div>
         </div>
         <div>
-          <p className="footer-title">Company</p>
+          <p className="footer-title">{t("Company")}</p>
           <div className="footer-links">
             <Link href="/appointment">Talk to an expert</Link>
             <Link href="/admin/login">Client portal</Link>
@@ -167,9 +168,9 @@ export function Footer() {
           </div>
         </div>
         <div>
-          <p className="footer-title">Built for the next move</p>
-          <p className="footer-note">We bring strategy, engineering, and responsible AI together—without the black-box handoff.</p>
-          <Link href="/appointment" className="button primary" style={{ marginTop: 17 }}>Start a conversation <ArrowRight size={14} /></Link>
+          <p className="footer-title">{t("Built for the next move")}</p>
+          <p className="footer-note">{t("We bring strategy, engineering, and responsible AI together—without the black-box handoff.")}</p>
+          <Link href="/appointment" className="button primary" style={{ marginTop: 17 }}>{t("Start a conversation")} <ArrowRight size={14} /></Link>
         </div>
       </div>
       <div className="shell footer-bottom"><span>© 2026 Antitude Systems</span><span>Human judgment · Useful technology</span></div>
@@ -191,12 +192,13 @@ export function PageHero({ eyebrow, title, description }: { eyebrow: string; tit
 }
 
 export function SectionHeader({ eyebrow, title, description, action }: { eyebrow: string; title: string; description?: string; action?: ReactNode }) {
+  const { t } = useLanguage();
   return (
     <div className="section-head">
       <div>
-        <span className="eyebrow">{eyebrow}</span>
-        <h2 className="h2">{title}</h2>
-        {description && <p className="lede">{description}</p>}
+        <span className="eyebrow">{t(eyebrow)}</span>
+        <h2 className="h2">{t(title)}</h2>
+        {description && <p className="lede">{t(description)}</p>}
       </div>
       {action}
     </div>
