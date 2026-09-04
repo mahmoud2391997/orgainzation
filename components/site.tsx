@@ -54,7 +54,7 @@ export function Brand({ light = false }: { light?: boolean }) {
 
 function LanguageToggle() {
   const { locale, setLocale } = useLanguage();
-  return <button className="button ghost language-toggle" type="button" onClick={() => setLocale(locale === "en" ? "ar" : "en")} aria-label={locale === "en" ? "Switch to Arabic" : "Switch to English"}>{locale === "en" ? "عربي" : "EN"}</button>;
+  return <button className="button ghost language-toggle" type="button" onClick={() => setLocale(locale === "en" ? "ar" : "en")} aria-label={locale === "en" ? "Switch to Arabic" : "Switch to English"}>{locale === "en" ? "AR" : "EN"}</button>;
 }
 
 function ThemeToggle() {
