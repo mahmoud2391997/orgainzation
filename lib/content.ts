@@ -51,7 +51,7 @@ export const services: Service[] = [
       "We design practical AI systems that move from prototype to production with clear guardrails, measurable outcomes, and a human point of view. From retrieval systems to predictive models, every engagement starts with the business signal.",
     icon: "spark",
     technologies: ["Python", "OpenAI", "PyTorch", "Azure AI"],
-    image: "/images/service-ai.jpg",
+    image: "/images/service-ai.png",
     caseStudy: "Grounded AI assistant for service teams",
     caseMetric: "75% of routine requests automated",
   },
@@ -64,7 +64,7 @@ export const services: Service[] = [
       "Product-minded engineering teams for ambitious software. We map the real workflow, simplify the hard parts, and ship reliable web and mobile experiences that compound in value.",
     icon: "code",
     technologies: ["TypeScript", "React", "Node.js", "PostgreSQL"],
-    image: "/images/service-software.jpg",
+    image: "/images/service-software.png",
     caseStudy: "Multi-tenant operations platform",
     caseMetric: "40–60% lower licensing overhead",
   },
@@ -77,7 +77,7 @@ export const services: Service[] = [
       "We modernize infrastructure around your risk profile, from cloud foundations and observability to platform automation. The result is faster delivery without sacrificing security or operational control.",
     icon: "cloud",
     technologies: ["AWS", "Kubernetes", "Terraform", "Datadog"],
-    image: "/images/service-cloud.jpg",
+    image: "/images/service-cloud.png",
   },
   {
     id: "s4",
@@ -88,7 +88,7 @@ export const services: Service[] = [
       "Transformation only matters when it changes the day-to-day. We align leadership, operating models, and technology to make your next chapter executable—not just presentable.",
     icon: "layers",
     technologies: ["Discovery", "Product strategy", "Change design", "Systems thinking"],
-    image: "/images/service-transformation.jpg",
+    image: "/images/service-transformation.png",
   },
   {
     id: "s5",
@@ -99,7 +99,7 @@ export const services: Service[] = [
       "Quality is designed in. Our engineers build test strategy, automation, and release intelligence into the product lifecycle so your teams can move quickly and sleep well.",
     icon: "shield",
     technologies: ["Playwright", "Cypress", "k6", "CI/CD"],
-    image: "/images/service-quality.jpg",
+    image: "/images/service-quality.png",
   },
   {
     id: "s6",
@@ -110,7 +110,7 @@ export const services: Service[] = [
       "Independent technical perspective for moments that matter: architecture reviews, build-versus-buy decisions, operating model design, and a pragmatic path from current state to future state.",
     icon: "radar",
     technologies: ["Architecture", "Roadmaps", "Due diligence", "Advisory"],
-    image: "/images/service-consulting.jpg",
+    image: "/images/service-consulting.png",
   },
   {
     id: "s7",
@@ -121,24 +121,24 @@ export const services: Service[] = [
       "We take products from ambiguous first brief to production scale, combining product strategy, human-centered design, and disciplined engineering. Each increment makes the next decision clearer and the product more useful.",
     icon: "globe",
     technologies: ["Product strategy", "React", "TypeScript", "Design systems"],
-    image: "/images/service-software.jpg",
+    image: "/images/service-software.png",
   },
 ];
 
 export const technologies: Technology[] = [
-  { id: "t1", name: "Generative AI", description: "Grounded copilots, retrieval systems, evaluation, and responsible model integration.", category: "Artificial intelligence", icon: "spark", image: "/images/technology-generative-ai.jpg" },
-  { id: "t2", name: "Cloud native", description: "Composable cloud foundations engineered for velocity and resilience.", category: "Cloud & infrastructure", icon: "cloud", image: "/images/technology-cloud-native.jpg" },
-  { id: "t3", name: "Data platforms", description: "Modern pipelines and semantic layers that make data useful at the moment of need.", category: "Data & analytics", icon: "database", image: "/images/technology-data-platforms.jpg" },
-  { id: "t4", name: "Web applications", description: "Fast, accessible products with a considered interface and durable architecture.", category: "Product engineering", icon: "globe", image: "/images/technology-web-applications.jpg" },
-  { id: "t5", name: "Intelligent automation", description: "Connect systems, orchestrate work, and remove the expensive repetition.", category: "Artificial intelligence", icon: "network", image: "/images/technology-automation.jpg" },
-  { id: "t6", name: "Cyber resilience", description: "Security posture, identity, and observable operations woven into delivery.", category: "Cloud & infrastructure", icon: "shield", image: "/images/technology-cyber-resilience.jpg" },
+  { id: "t1", name: "Generative AI", description: "Grounded copilots, retrieval systems, evaluation, and responsible model integration.", category: "Artificial intelligence", icon: "spark", image: "/images/technology-generative-ai.png" },
+  { id: "t2", name: "Cloud native", description: "Composable cloud foundations engineered for velocity and resilience.", category: "Cloud & infrastructure", icon: "cloud", image: "/images/technology-cloud-native.png" },
+  { id: "t3", name: "Data platforms", description: "Modern pipelines and semantic layers that make data useful at the moment of need.", category: "Data & analytics", icon: "database", image: "/images/technology-data-platforms.png" },
+  { id: "t4", name: "Web applications", description: "Fast, accessible products with a considered interface and durable architecture.", category: "Product engineering", icon: "globe", image: "/images/technology-web-applications.png" },
+  { id: "t5", name: "Intelligent automation", description: "Connect systems, orchestrate work, and remove the expensive repetition.", category: "Artificial intelligence", icon: "network", image: "/images/technology-automation.png" },
+  { id: "t6", name: "Cyber resilience", description: "Security posture, identity, and observable operations woven into delivery.", category: "Cloud & infrastructure", icon: "shield", image: "/images/technology-cyber-resilience.png" },
 ];
 
 export const solutions: Solution[] = [
-  { id: "so1", title: "Healthcare & life sciences", description: "Make care more connected, outcomes more measurable, and operations less manual.", industry: "Healthcare", image: "/images/solution-healthcare.jpg" },
-  { id: "so2", title: "Financial services", description: "Build trusted digital experiences for a sector where every decision carries weight.", industry: "Financial services", image: "/images/solution-finance.jpg" },
-  { id: "so3", title: "Retail & consumer", description: "Turn customer signals into useful, timely experiences across every channel.", industry: "Retail", image: "/images/solution-retail.jpg" },
-  { id: "so4", title: "Energy & industrials", description: "Bring intelligence to complex assets, field teams, and critical infrastructure.", industry: "Energy", image: "/images/solution-energy.jpg" },
+  { id: "so1", title: "Healthcare & life sciences", description: "Make care more connected, outcomes more measurable, and operations less manual.", industry: "Healthcare", image: "/images/solution-healthcare.png" },
+  { id: "so2", title: "Financial services", description: "Build trusted digital experiences for a sector where every decision carries weight.", industry: "Financial services", image: "/images/solution-finance.png" },
+  { id: "so3", title: "Retail & consumer", description: "Turn customer signals into useful, timely experiences across every channel.", industry: "Retail", image: "/images/solution-retail.png" },
+  { id: "so4", title: "Energy & industrials", description: "Bring intelligence to complex assets, field teams, and critical infrastructure.", industry: "Energy", image: "/images/solution-energy.png" },
 ];
 
 export type LeadStatus = "new" | "contacted" | "qualified" | "lost";
