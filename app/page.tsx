@@ -4,29 +4,28 @@ import { getCmsContent } from "@/lib/cms";
 import { Icon, SectionHeader } from "@/components/site";
 import { ServicesCarousel } from "@/components/services-carousel";
 import { ConsultationForm } from "@/components/consultation-form";
+import { HeroVisual } from "@/components/hero-visual";
 
 export default async function HomePage() {
   const { services, solutions, technologies } = await getCmsContent();
   return (
     <>
       <section className="hero">
-        <div className="shell hero-content">
-          <span className="eyebrow" style={{ color: "var(--cyan)" }}>Technology partner · since 2014</span>
-          <h1 className="display reveal">Make complex <span className="text-gradient">useful.</span></h1>
-          <p className="lede reveal-2">Antitude helps CTOs, enterprise leaders, and founders turn difficult technology into clear, measurable momentum. Strategy, engineering, and responsible AI—working as one.</p>
-          <div className="hero-meta reveal-2">
-            <span className="hero-bullet">Senior teams only</span>
-            <span className="hero-bullet">Outcome-led</span>
-            <span className="hero-bullet">No black boxes</span>
+        <div className="shell hero-layout">
+          <div className="hero-content">
+            <span className="eyebrow" style={{ color: "var(--cyan)" }}>Technology partner · since 2014</span>
+            <h1 className="display reveal">Make complex <span className="text-gradient">useful.</span></h1>
+            <p className="lede reveal-2">Antitude helps CTOs, enterprise leaders, and founders turn difficult technology into clear, measurable momentum. Strategy, engineering, and responsible AI—working as one.</p>
+            <div className="hero-meta reveal-2"><span className="hero-bullet">Senior teams only</span><span className="hero-bullet">Outcome-led</span><span className="hero-bullet">No black boxes</span></div>
+            <div className="hero-actions reveal-3"><Link href="/appointment" className="button primary large">Tell us what matters <ArrowRight size={16} /></Link><Link href="/about" className="button secondary large">About Antitude <ArrowRight size={16} /></Link></div>
           </div>
-          <div className="hero-actions reveal-3">
-            <Link href="/appointment" className="button primary large">Tell us what matters <ArrowRight size={16} /></Link>
-            <Link href="/about" className="button secondary large">About Antitude <ArrowRight size={16} /></Link>
-          </div>
+          <HeroVisual />
         </div>
       </section>
 
-      <section className="section">
+      <div className="shell proof-rail" aria-label="Antitude proof points"><div><strong>10+</strong><span>years making hard work clearer</span></div><div><strong>3</strong><span>disciplines, one senior team</span></div><div><strong>∞</strong><span>curiosity for what comes next</span></div></div>
+
+      <section className="section" id="services">
         <div className="shell">
           <SectionHeader eyebrow="Core services" title="A sharp team for the messy middle." description="From custom platforms and AI systems to cloud foundations, quality, and product delivery, we make difficult work executable." action={<Link className="button secondary" href="/services">Explore capabilities <ArrowRight size={14} /></Link>} />
           <ServicesCarousel services={services} />

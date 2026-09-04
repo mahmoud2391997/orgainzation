@@ -77,6 +77,13 @@ function ThemeToggle() {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   if (pathname.startsWith("/admin")) return null;
   const links = [
     ["Services", "/services"],
@@ -87,7 +94,7 @@ export function Header() {
   ];
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="shell navbar">
         <Brand />
         <nav className="main-nav" aria-label="Primary navigation">
