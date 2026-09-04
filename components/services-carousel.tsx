@@ -51,6 +51,7 @@ export function ServicesCarousel({ services }: { services: Service[] }) {
         </div>
       </div>
       <div className="carousel-controls" aria-label="Services carousel controls">
+        <div className="carousel-dots" aria-label="Choose service slide">{Array.from({ length: lastIndex + 1 }).map((_, index) => <button key={index} type="button" className={`carousel-dot ${index === activeIndex ? "active" : ""}`} onClick={() => setActiveIndex(index)} aria-label={`Go to service slide ${index + 1}`} aria-current={index === activeIndex ? "true" : undefined} />)}</div>
         <button className="carousel-button" type="button" onClick={() => setActiveIndex((index) => Math.max(0, index - 1))} disabled={activeIndex === 0} aria-label="Previous services"><ArrowLeft size={16} /></button>
         <span className="carousel-status" aria-live="polite">{activeIndex + 1} / {lastIndex + 1}</span>
         <button className="carousel-button" type="button" onClick={() => setActiveIndex((index) => Math.min(lastIndex, index + 1))} disabled={activeIndex === lastIndex} aria-label="Next services"><ArrowRight size={16} /></button>
