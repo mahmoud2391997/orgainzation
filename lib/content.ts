@@ -18,6 +18,8 @@ export type Service = {
   icon: IconName;
   technologies: string[];
   image: string;
+  caseStudy?: string;
+  caseMetric?: string;
 };
 
 export type Technology = {
@@ -27,6 +29,8 @@ export type Technology = {
   category: string;
   icon: IconName;
   image: string;
+  caseStudy?: string;
+  caseMetric?: string;
 };
 
 export type Solution = {
@@ -48,6 +52,8 @@ export const services: Service[] = [
     icon: "spark",
     technologies: ["Python", "OpenAI", "PyTorch", "Azure AI"],
     image: "/images/service-ai.jpg",
+    caseStudy: "Grounded AI assistant for service teams",
+    caseMetric: "75% of routine requests automated",
   },
   {
     id: "s2",
@@ -59,6 +65,8 @@ export const services: Service[] = [
     icon: "code",
     technologies: ["TypeScript", "React", "Node.js", "PostgreSQL"],
     image: "/images/service-software.jpg",
+    caseStudy: "Multi-tenant operations platform",
+    caseMetric: "40–60% lower licensing overhead",
   },
   {
     id: "s3",
@@ -155,3 +163,7 @@ export const seedLeads: Lead[] = [
 ];
 
 export const content = { services, technologies, solutions };
+
+export function enrichCmsContent<T extends Service | Technology | Solution>(items: T[]): T[] {
+  return items.map((item) => item);
+}

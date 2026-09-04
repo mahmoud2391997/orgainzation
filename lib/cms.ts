@@ -23,7 +23,7 @@ export async function getCmsContent() {
   noStore();
   const overrides = await readOverrides();
   return {
-    services: (overrides.services ?? content.services) as Service[],
+    services: (overrides.services ?? content.services).map((item) => ({ ...item, caseStudy: "caseStudy" in item ? item.caseStudy : undefined, caseMetric: "caseMetric" in item ? item.caseMetric : undefined })) as Service[],
     technologies: (overrides.technologies ?? content.technologies) as Technology[],
     solutions: (overrides.solutions ?? content.solutions) as Solution[],
   };
