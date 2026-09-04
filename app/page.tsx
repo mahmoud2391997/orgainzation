@@ -6,10 +6,12 @@ import { ServicesCarousel } from "@/components/services-carousel";
 import { ConsultationForm } from "@/components/consultation-form";
 import { HeroVisual } from "@/components/hero-visual";
 import { Radar } from "@/components/radar";
-import { examples } from "@/lib/examples";
 
 export default async function HomePage() {
   const { services, solutions, technologies } = await getCmsContent();
+  const catalogServiceIds = ["s10", "s8", "s11", "s12", "s5"];
+  const catalogServices = catalogServiceIds.map((id) => services.find((service) => service.id === id)).filter((service): service is (typeof services)[number] => Boolean(service));
+  const featuredCases = ["s1", "s2", "s3"].map((id) => services.find((service) => service.id === id)).filter((service): service is (typeof services)[number] => Boolean(service));
   return (
     <>
       <section className="hero">
@@ -29,15 +31,14 @@ export default async function HomePage() {
 
       <section className="section" id="services">
         <div className="shell">
-          <SectionHeader eyebrow="Core services" title="A sharp team for the messy middle." description="From custom platforms and AI systems to cloud foundations, quality, and product delivery, we make difficult work executable." action={<Link className="button secondary" href="/services">Explore capabilities <ArrowRight size={14} /></Link>} />
-          <ServicesCarousel services={services} />
-          <div className="case-strip" aria-label="Featured service cases">{services.slice(0, 3).map((service) => <Link className="case-chip" href={`/services/${service.slug}`} key={service.id}><span>Case in point</span><strong>{service.caseStudy ?? service.name}</strong><small>{service.caseMetric ?? service.description}</small><ArrowRight size={14} /></Link>)}</div>
+          <SectionHeader eyebrow="What we do" title="A sharp team for the messy middle." description="Five focused offers take work from useful question to dependable outcome." action={<Link className="button secondary" href="/services">Explore services <ArrowRight size={14} /></Link>} />
+          <ServicesCarousel services={catalogServices} />
         </div>
       </section>
 
       <section className="section">
         <div className="shell">
-          <SectionHeader eyebrow="Technology radar" title="The stack is a means, not the strategy." description="We choose practical technologies for durable products, grounded intelligence, secure integrations, and resilient operations." action={<Link className="button secondary" href="/technologies">Explore technologies <ArrowRight size={14} /></Link>} />
+          <SectionHeader eyebrow="What we build with" title="The stack is a means, not the strategy." description="Technologies support the service outcome: intelligence, products, connected systems, and resilient operations." action={<Link className="button secondary" href="/technologies">Explore technologies <ArrowRight size={14} /></Link>} />
           <Radar services={services} technologies={technologies} solutions={solutions} />
           <div className="technology-grid">
             {technologies.map((technology) => (
@@ -52,8 +53,8 @@ export default async function HomePage() {
 
       <section className="section">
         <div className="shell">
-          <SectionHeader eyebrow="Examples" title="Proof, not promises." description="Explore the kinds of products, platforms, and intelligent systems we make useful." action={<Link className="button secondary" href="/examples">Explore examples <ArrowRight size={14} /></Link>} />
-          <div className="home-examples-grid">{examples.slice(0, 3).map((example) => <Link href="/examples" className="home-example-card" key={example.id}><img src={example.media} alt="" /><div><span className="kicker">{example.eyebrow}</span><h3>{example.title}</h3><p>{example.metric}</p><ArrowRight size={15} /></div></Link>)}</div>
+          <SectionHeader eyebrow="Examples" title="Proof, not promises." description="Three case studies show the outcomes behind our services." action={<Link className="button secondary" href="/examples">Explore examples <ArrowRight size={14} /></Link>} />
+          <div className="home-examples-grid">{featuredCases.map((service) => <Link href={`/services/${service.slug}`} className="home-example-card" key={service.id}><img src={service.image} alt="" /><div><span className="kicker">Case in point</span><h3>{service.caseStudy ?? service.name}</h3><p>{service.caseMetric ?? service.description}</p><small>{service.description}</small><ArrowRight size={15} /></div></Link>)}</div>
         </div>
       </section>
 

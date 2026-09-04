@@ -178,12 +178,13 @@ export function Footer() {
 }
 
 export function PageHero({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+  const { t } = useLanguage();
   return (
     <section className="page-hero">
       <div className="shell reveal">
-        <span className="eyebrow">{eyebrow}</span>
-        <h1 className="h1">{title}</h1>
-        <p className="lede">{description}</p>
+        <span className="eyebrow">{t(eyebrow)}</span>
+        <h1 className="h1">{t(title)}</h1>
+        <p className="lede">{t(description)}</p>
       </div>
     </section>
   );
