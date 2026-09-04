@@ -138,7 +138,7 @@ const translations: Record<string, string> = {
   "Discuss your version": "ناقش نسختك",
 
   // ── Consultation Form ─────────────────────────────────────────────────────────
-  "Bring us the hard question.": "اطرح علينا السؤال الصعب.",
+  "Bring us the hard question.": "اط��ح علينا السؤال الصعب.",
   "Less pitch. More signal.": "عرض أقل، إشارة أكثر.",
   "The first 30 minutes": "أول 30 دقيقة",
   "First name": "الاسم الأول",
@@ -184,7 +184,7 @@ const translations: Record<string, string> = {
   "Signals turned into customer moments": "إشارات تتحول إلى لحظات عملاء",
   "Intelligence for critical assets": "ذكاء للأصول الحيوية",
 
-  // ── Examples Library & Service Details ───────────────────────────────────────
+  // ── Examples Library & Service Details ───────────────────────────��───────────
   "Examples library": "مكتبة الأمثلة",
   "See what useful looks like.": "شاهد كيف تبدو الحلول العملية.",
   "A field guide to the products, platforms, and intelligent systems we help ambitious teams bring to life.":
@@ -235,12 +235,10 @@ const translations: Record<string, string> = {
   "total conversations": "إجمالي المحادثات",
   "Lead status updated.": "تم تحديث حالة الطلب بنجاح.",
   "Contact": "جهة الاتصال",
-  "Company": "الشركة",
   "Request": "الطلب",
   "Date": "التاريخ",
   "Status": "الحالة",
   "Search leads...": "البحث في الطلبات (الاسم، الشركة، البريد)...",
-  "All": "الكل",
   "new": "جديد",
   "contacted": "تم التواصل",
   "qualified": "مؤهل",
