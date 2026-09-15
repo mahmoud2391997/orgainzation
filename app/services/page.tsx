@@ -8,7 +8,7 @@ import { ExamplesTeaserGrid } from "@/components/examples-teaser-grid";
 export const metadata = { title: "Services" };
 
 export default async function ServicesPage() {
-  const { services } = await getCmsContent();
+  const { services, examples } = await getCmsContent();
   return (
     <>
       <PageHero
@@ -31,7 +31,7 @@ export default async function ServicesPage() {
               <LocaleText>View all examples</LocaleText> <ArrowRight size={14} />
             </Link>
           </div>
-          <ExamplesTeaserGrid />
+          <ExamplesTeaserGrid examples={examples} />
         </div>
       </section>
       <section className="section-tight">

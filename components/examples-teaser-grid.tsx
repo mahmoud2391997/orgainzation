@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { examples } from "@/lib/examples";
+import { type Example } from "@/lib/examples";
 import { useLanguage } from "@/components/language-provider";
 import { getLocalizedExample } from "@/lib/translations-data";
 
-export function ExamplesTeaserGrid() {
+export function ExamplesTeaserGrid({ examples }: { examples: Example[] }) {
   const { locale } = useLanguage();
 
   const items = examples

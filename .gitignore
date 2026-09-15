@@ -8,3 +8,5 @@ out
 *.log
 .DS_Store
 /_new_images/
+/public/uploads/*
+!/public/uploads/.gitkeep

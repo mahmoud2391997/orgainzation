@@ -11,7 +11,7 @@ import { SolutionsGrid } from "@/components/solutions-grid";
 import { HomeExamplesShowcase } from "@/components/home-examples-showcase";
 
 export default async function HomePage() {
-  const { services, solutions, technologies } = await getCmsContent();
+  const { services, solutions, technologies, examples } = await getCmsContent();
   const catalogServiceIds = ["s10", "s8", "s11", "s12", "s5"];
   const catalogServices = catalogServiceIds
     .map((id) => services.find((service) => service.id === id))
@@ -62,7 +62,7 @@ export default async function HomePage() {
       </section>
 
       {/* Real Apps Showcase from Examples Library */}
-      <HomeExamplesShowcase />
+      <HomeExamplesShowcase examples={examples} />
 
       <section className="section-tight">
         <div className="shell">

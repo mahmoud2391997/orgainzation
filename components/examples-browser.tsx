@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowRight, Check, Clock3, Search, X } from "lucide-react";
-import { examples, type ExampleCategory } from "@/lib/examples";
+import { type Example, type ExampleCategory } from "@/lib/examples";
 import { useLanguage } from "@/components/language-provider";
 import { getLocalizedExample } from "@/lib/translations-data";
 
 const categories: Array<"All" | ExampleCategory> = ["All", "Services", "Solutions", "Technologies"];
 
-export function ExamplesBrowser() {
+export function ExamplesBrowser({ examples }: { examples: Example[] }) {
   const { locale, t } = useLanguage();
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
   const [query, setQuery] = useState("");
@@ -17,7 +17,7 @@ export function ExamplesBrowser() {
 
   const localizedExamples = useMemo(
     () => examples.map((ex) => getLocalizedExample(ex, locale)),
-    [locale]
+    [examples, locale]
   );
 
   const filtered = useMemo(() => {

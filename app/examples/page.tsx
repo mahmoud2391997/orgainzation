@@ -2,13 +2,16 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ExamplesBrowser } from "@/components/examples-browser";
 import { LocaleText, PageHero } from "@/components/site";
+import { getCmsContent } from "@/lib/cms";
 
 export const metadata = {
   title: "Examples",
   description: "Explore practical examples across Antitude services, solutions, and technologies.",
 };
 
-export default function ExamplesPage() {
+export default async function ExamplesPage() {
+  const { examples } = await getCmsContent();
+
   return (
     <main>
       <PageHero
@@ -35,7 +38,7 @@ export default function ExamplesPage() {
               <LocaleText>Discuss your version</LocaleText> <ArrowRight size={14} />
             </Link>
           </div>
-          <ExamplesBrowser />
+          <ExamplesBrowser examples={examples} />
         </div>
       </section>
     </main>
