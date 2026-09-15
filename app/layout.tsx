@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Header } from "@/components/site";
 import { LanguageProvider } from "@/components/language-provider";
+import { ThemeScript } from "@/components/theme-script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,9 +16,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <ThemeScript />
         <LanguageProvider>
+          <a className="skip-link" href="#main-content">
+            Skip to content
+          </a>
           <Header />
-          <main>{children}</main>
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </LanguageProvider>
       </body>

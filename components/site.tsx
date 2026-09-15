@@ -95,7 +95,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <button className="button ghost" onClick={toggle} aria-label="Toggle color theme" style={{ minHeight: 40, padding: "0 10px" }}>
+    <button type="button" className="button ghost" onClick={toggle} aria-label="Toggle color theme" style={{ minHeight: 40, padding: "0 10px" }}>
       {dark ? <Sun size={16} /> : <Moon size={16} />}
     </button>
   );
@@ -128,7 +128,14 @@ export function Header() {
         <Brand />
         <nav className="main-nav" aria-label="Primary navigation">
           {links.map(([label, href]) => (
-            <Link key={href} href={href} className={`nav-link ${pathname.startsWith(href) ? "active" : ""}`}>{t(label)}</Link>
+            <Link
+              key={href}
+              href={href}
+              className={`nav-link ${pathname.startsWith(href) ? "active" : ""}`}
+              aria-current={pathname.startsWith(href) ? "page" : undefined}
+            >
+              {t(label)}
+            </Link>
           ))}
         </nav>
         <div className="nav-actions">

@@ -138,7 +138,7 @@ const translations: Record<string, string> = {
   "Discuss your version": "ناقش نسختك",
 
   // ── Consultation Form ─────────────────────────────────────────────────────────
-  "Bring us the hard question.": "اط��ح علينا السؤال الصعب.",
+  "Bring us the hard question.": "اطرح علينا السؤال الصعب.",
   "Less pitch. More signal.": "عرض أقل، إشارة أكثر.",
   "The first 30 minutes": "أول 30 دقيقة",
   "First name": "الاسم الأول",
