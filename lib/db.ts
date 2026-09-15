@@ -1,6 +1,7 @@
 import { drizzle, type PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "@/db/schema";
+import { getDatabasePoolMax, getDatabaseSslConfig } from "@/lib/env";
 
 let client: ReturnType<typeof postgres> | undefined;
 let database: PostgresJsDatabase<typeof schema> | undefined;
@@ -10,10 +11,11 @@ export function getDb() {
   if (!url) throw new Error("DATABASE_URL is required to use the PostgreSQL data layer.");
   if (!database) {
     client = postgres(url, {
-      max: Number(process.env.DATABASE_POOL_MAX ?? 5),
+      max: getDatabasePoolMax(),
       idle_timeout: 20,
       connect_timeout: 10,
       prepare: false,
+      ssl: getDatabaseSslConfig(url),
     });
     database = drizzle(client, { schema });
   }

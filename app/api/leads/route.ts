@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { addLead, readLeads, updateLeadStatus } from "@/lib/leads";
 import type { LeadStatus } from "@/lib/content";
+import { getAdminPassword } from "@/lib/env";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,7 +28,7 @@ export async function POST(request: Request) {
 }
 
 function authorized(request: Request) {
-  const expected = process.env.ADMIN_PASSWORD ?? "antitude-demo";
+  const expected = getAdminPassword();
   const headerKey = request.headers.get("x-admin-key");
   const cookieKey = request.headers.get("cookie")?.split("; ").find((item) => item.startsWith("antitude-admin="))?.split("=")[1];
   return headerKey === expected || cookieKey === expected;
