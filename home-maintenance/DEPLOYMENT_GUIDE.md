@@ -2,9 +2,11 @@
 
 BaytFix uses the same Vercel / PostgreSQL / Salla / WhatsApp setup as the source ordering system. Use a **new** Salla merchant, WhatsApp number, and database — do not point this copy at the produce store.
 
+Run these commands from the **repo root** of the standalone BaytFix folder on your PC (not nested inside `orgainzation`).
+
 ## Status Summary
 
-- Code is a local copy under `home-maintenance/`
+- Standalone Next.js app (own GitHub repo / own folder on your PC)
 - Prisma + Supabase SQL migrations are included
 - Seed data is electrical, plumbing, and inspection jobs
 
@@ -23,8 +25,8 @@ sudo -u postgres createdb -O baytfix baytfix
 Set these values in `/var/www/baytfix/.env`:
 
 ```dotenv
-DATABASE_URL=postgresql://fresh_greens:<password>@127.0.0.1:5432/fresh_greens
-DIRECT_DATABASE_URL=postgresql://fresh_greens:<password>@127.0.0.1:5432/fresh_greens
+DATABASE_URL=postgresql://baytfix:<password>@127.0.0.1:5432/baytfix
+DIRECT_DATABASE_URL=postgresql://baytfix:<password>@127.0.0.1:5432/baytfix
 ```
 
 Initialize the base schema once after cloning the application:
