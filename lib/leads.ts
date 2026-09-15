@@ -6,6 +6,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { leads, type LeadRow } from "@/db/schema";
 import { getDb } from "@/lib/db";
+import { allowJsonFallback } from "@/lib/env";
 import type { Lead, LeadStatus } from "@/lib/content";
 
 const leadsJsonPath = path.join(process.cwd(), "data/leads.json");
@@ -44,6 +45,7 @@ export async function readLeads(): Promise<Lead[]> {
     return rows.map(toLead);
   } catch (error) {
     console.log("Database unavailable, using JSON fallback for leads");
+    if (!allowJsonFallback()) throw error;
     return readLeadsFromJson();
   }
 }
@@ -65,6 +67,7 @@ export async function addLead(input: Omit<Lead, "id" | "status" | "submittedAt">
     return toLead(row);
   } catch (error) {
     console.log("Database unavailable, using JSON fallback for leads");
+    if (!allowJsonFallback()) throw error;
     const leadsData = await readLeadsFromJson();
     const newLead: Lead = {
       id: `l_${randomUUID()}`,
@@ -84,6 +87,7 @@ export async function updateLeadStatus(id: string, status: LeadStatus): Promise<
     return row ? toLead(row) : null;
   } catch (error) {
     console.log("Database unavailable, using JSON fallback for leads");
+    if (!allowJsonFallback()) throw error;
     const leadsData = await readLeadsFromJson();
     const index = leadsData.findIndex((lead) => lead.id === id);
     if (index === -1) return null;

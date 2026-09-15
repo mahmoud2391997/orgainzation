@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { getCmsContent, updateCmsContent, type CmsKind } from "@/lib/cms";
+import { getAdminPassword } from "@/lib/env";
 
 export const runtime = "nodejs";
 
 function authorized(request: Request) {
-  const expected = process.env.ADMIN_PASSWORD ?? "antitude-demo";
+  const expected = getAdminPassword();
   const headerKey = request.headers.get("x-admin-key");
   const cookieKey = request.headers.get("cookie")?.split("; ").find((item) => item.startsWith("antitude-admin="))?.split("=")[1];
   return headerKey === expected || cookieKey === expected;
