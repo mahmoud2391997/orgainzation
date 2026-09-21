@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./load-env";
 import { content, seedLeads } from "@/lib/content";
 import { examples } from "@/lib/examples";
 import { closeDb, getDb } from "@/lib/db";
