@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ─── BaytFix VPS Initial Setup ─────────────────────────────────
+# Run this ONCE on a fresh Ubuntu VPS (Hostinger).
+# Usage: sudo bash setup-vps.sh
+# ─────────────────────────────────────────────────────────────────────
+
+echo "🔧 BaytFix — VPS Initial Setup"
+
+# 1. System packages
+apt update && apt upgrade -y
+apt install -y curl git build-essential nginx certbot python3-certbot-nginx postgresql postgresql-contrib
+
+# 2. Local PostgreSQL
+systemctl enable --now postgresql
+
+# 3. Node.js 20.x
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install -y nodejs
+
+# 4. PM2 globally
+npm install -g pm2
+
+# 5. Create app directory
+APP_DIR="/var/www/baytfix"
+mkdir -p "$APP_DIR"
+chown $(whoami):$(whoami) "$APP_DIR"
+
+# 5. Clone repo (user must set GIT_REPO first)
+echo ""
+echo "📋 Next steps:"
+echo "  1. cd $APP_DIR && git clone <YOUR_REPO_URL> ."
+echo "  2. Create the database: sudo -u postgres createuser --pwprompt baytfix"
+echo "     sudo -u postgres createdb -O baytfix baytfix"
+echo "  3. Create .env with DATABASE_URL=postgresql://baytfix:<password>@127.0.0.1:5432/baytfix"
+echo "     Set DIRECT_DATABASE_URL to the same local connection string."
+echo "  4. Run: npx prisma generate && npx prisma db push"
+echo "     This initializes the local database from prisma/schema.prisma once."
+echo "  5. Run: npm run build && pm2 start ecosystem.config.js --env production"
+echo "  6. pm2 save && pm2 startup"
+echo "  7. Copy deploy/nginx/baytfix.conf → /etc/nginx/sites-available/baytfix"
+echo "     Then: ln -s /etc/nginx/sites-available/baytfix /etc/nginx/sites-enabled/"
+echo "     Then: nginx -t && systemctl reload nginx"
+echo "  6. certbot --nginx -d yourdomain.com -d www.yourdomain.com"
+echo ""
+echo "✅ Setup complete!"
