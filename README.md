@@ -7,7 +7,7 @@ A full-stack Next.js App Router migration of the supplied AI Technology Partner 
 ```bash
 pnpm install
 cp .env.example .env.local
-# set DATABASE_URL + ADMIN_PASSWORD, then:
+# set DATABASE_URL. ADMIN_PASSWORD is optional (default: antitude-demo)
 pnpm db:setup
 pnpm dev
 ```
@@ -18,9 +18,9 @@ The site runs at `http://localhost:3000`. With PostgreSQL connected, the admin p
 
 The consultation form submits to `POST /api/leads` and persists requests in PostgreSQL through Drizzle ORM. Public marketing content lives in typed CMS tables (`cms_services`, `cms_technologies`, `cms_solutions`, `cms_examples`) plus `media_assets` for uploads under `/public/uploads`. The client portal is available at `/admin`; sign in through `/admin/login`, then edit content (including images) and manage lead statuses.
 
-Set both `DATABASE_URL` and `ADMIN_PASSWORD` before deploying. Run `pnpm db:setup` once against the target PostgreSQL database to apply migrations and insert the initial demo rows. The database layer uses a pooled `postgres` client with server-only access.
+Set `DATABASE_URL` before deploying. `ADMIN_PASSWORD` is optional: when it is missing, the admin portal password is `antitude-demo`. Run `pnpm db:setup` once against the target PostgreSQL database to apply migrations and insert the initial demo rows. The database layer uses a pooled `postgres` client with server-only access.
 
-In production, `ADMIN_PASSWORD` is required (the app will not fall back to the demo password). Likewise, the app does **not** fall back to local JSON storage by default in production — this makes misconfigured database deployments fail loudly.
+The app does **not** fall back to local JSON storage by default in production — this makes misconfigured database deployments fail loudly.
 
 ### Hostinger / managed PostgreSQL notes
 

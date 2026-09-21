@@ -2,15 +2,11 @@ function isProduction() {
   return process.env.NODE_ENV === "production";
 }
 
+export const DEFAULT_ADMIN_PASSWORD = "antitude-demo";
+
 export function getAdminPassword() {
-  const value = process.env.ADMIN_PASSWORD;
-  if (!value) {
-    if (isProduction()) {
-      throw new Error("ADMIN_PASSWORD must be set in production.");
-    }
-    return "antitude-demo";
-  }
-  return value;
+  const value = process.env.ADMIN_PASSWORD?.trim();
+  return value || DEFAULT_ADMIN_PASSWORD;
 }
 
 export function allowJsonFallback() {
